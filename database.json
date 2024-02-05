@@ -1,13 +1,13 @@
 {
     "defaultEnv": "development",
     "development": {
-      "ENV": "PROJECT_DEV_DATABASE_URL"
+      "ENV": "CLOCKING_SYSTEM_DEV_DATABASE_URL"
     },
     "test": {
-      "ENV": "PROJECT_TEST_DATABASE_URL"
+      "ENV": "CLOCKING_SYSTEM_TEST_DATABASE_URL"
     },
     "production": {
-      "ENV": "PROJECT_PROD_DATABASE_URL"
+      "ENV": "CLOCKING_SYSTEM_PROD_DATABASE_URL"
     },
     "sql-file" : true
 }

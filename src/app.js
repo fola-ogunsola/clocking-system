@@ -4,7 +4,7 @@ import config from './config/index';
 import enums from './lib/enums/index';
 import expressConfig from './config/express/index';
 
-const port = config.PROJECT_PORT || 8080;
+const port = config.CLOCKING_SYSTEM_PORT || 9089;
 const app = express();
 expressConfig(app);
 

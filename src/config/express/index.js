@@ -3,7 +3,7 @@ import 'dotenv/config';
 import { json, urlencoded } from 'express';
 import compression from 'compression';
 import cors from 'cors';
-import fileUpload from 'express-fileupload';
+import formData from 'express-form-data';
 import loggerInit from '../logger/index';
 import enums from '../../lib/enums/index';
 import ApiResponse from '../../lib/http/lib.http.responses';
@@ -33,18 +33,20 @@ const expressConfig = app => {
   global.logger = logger;
   logger.info(`${enums.CURRENT_TIME_STAMP} Application starting...`);
   logger.debug('Overriding \'Express\' logger');
-  logger.info(`${enums.CURRENT_TIME_STAMP} Environment is ${process.env.PROJECT_NODE_ENV}`);
+  logger.info(`${enums.CURRENT_TIME_STAMP} Environment is ${process.env.CLOCKING_SYSTEM_NODE_ENV}`);
 
+  // app.use(fileUpload());
+  // app.use(formData.parse())
   app.use(urlencoded({ extended: true }));
   app.use(json({ limit: 10000000 })); // set to allow 10mb JSON size
   app.use(cors());
   app.use(helmet());
   app.use(compression());
-  app.use(fileUpload());
+  
 
   // allow certain domains and allow certain HTTP methods
   app.use((req, res, next) => {
-    const allowedOrigins = config.PROJECT_ALLOWABLE_ORIGINS?.split(',').join('').split(' ');
+    const allowedOrigins = config.CLOCKING_SYSTEM_ALLOWABLE_ORIGINS?.split(',').join('').split(' ');
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
@@ -61,7 +63,6 @@ const expressConfig = app => {
   app.get('/', (_req, res) => {
     return ApiResponse.success(res, enums.WELCOME, enums.HTTP_OK);
   });
-
   // Other routes
   routes(app);
 
