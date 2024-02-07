@@ -15,5 +15,7 @@ export const NO_TOKEN = 'Please provide a token';
 export const INVALID_TOKEN = 'Invalid/Expired Token';
 export const SESSION_EXPIRED = 'Session expired';
 export const MEMBER_SUCCESSFULLY_ADDED = 'Member successfully added';
-export const MEMBER_EMAIL_EXIST = 'Member Email already exist'
+export const MEMBER_EMAIL_EXIST = 'Member Email already exist';
+export const DELETE_MEMBER = 'Member deleted successfully';
+export const MEMBER_SUCCESSFULLY_UPDATED = 'Member successfully updated'
 

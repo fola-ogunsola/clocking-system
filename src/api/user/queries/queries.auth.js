@@ -36,5 +36,12 @@ export default {
     SELECT first_name, email
     FROM members
     WHERE email = $1`,
+    deleteMember: `
+    DELETE 
+    FROM members
+    WHERE id = $1`,
+    editMember: `
+    UPDATE members
+    SET first_name = $1, last_name = $2, phone_number = $3 WHERE id = $4`
      
 }

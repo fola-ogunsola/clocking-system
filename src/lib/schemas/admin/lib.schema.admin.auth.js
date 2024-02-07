@@ -12,7 +12,7 @@ const adminForgotPassword = Joi.object().keys({
 const verifyOtp = Joi.object().keys({
     email: Joi.string().email().required(),
     otp: Joi.string().required().length(6),
-    new_password: Joi.string().required()
+    // new_password: Joi.string().required()
   });
 
 const addMember = Joi.object().keys({
@@ -27,10 +27,10 @@ const addMember = Joi.object().keys({
     // profile_image: Joi.string().required()
   });
   
-
 export default {
     adminLogin,
     adminForgotPassword,
     verifyOtp,
     addMember
+
 }

@@ -12,3 +12,5 @@ export const SET_PASSWORD_CONTROLLER = 'AdminAuthController::setPassword';
 export const VALIDATE_ADMIN_AUTH_TOKEN_MIDDLEWARE = 'AdminAuthMiddleware::validateAdminAuthToken';
 export const ADD_MEMBER_CONTROLLER = 'AdminAuthController::signUpMember';
 export const CHECK_IF_MEMBER_EMAIL_ALREADY_EXIST_MIDDLEWARE = 'AdminAuthMiddleware::checkIfAdminEmailAlreadyExist'
+export const DELETE_MEMBER_CONTROLLER = 'AdminAdminController::deleteMember';
+export const UPDATING_MEMBER_CONTROLLER = 'AdminAdminController::updateMember'

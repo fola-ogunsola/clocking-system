@@ -2,7 +2,7 @@
 import dayjs from 'dayjs';
 const bcrypt = require('bcryptjs');
 import authQueries from '../queries/queries.auth'
-import { processAnyData, processNoneData } from '../services/services.db';
+import { processAnyData, processNoneData,  processNoneData} from '../services/services.db';
 import Response from '../../../lib/http/lib.http.responses';
 import enums from '../../../lib/enums';
 import config from '../../../config';
@@ -10,6 +10,7 @@ import * as Hash from '../../../lib/utils/admin/lib.utils.admin.hash';
 import * as Helpers from '../../../lib/utils/admin/lib.utils.admin.helper'
 import { error } from 'winston';
 import MailService from '../services/services.email';
+
 
 /**
  * login admin
@@ -97,6 +98,17 @@ export const forgotPassword = async(req, res, next) => {
 };
 
 
+
+/** 
+*  Admin Reset password
+ * @param {Request} req - The request from the endpoint.
+ * @param {Response} res - The response returned by the method.
+ * @param {Next} next - Call the next operation.
+ * @returns { JSON } - A JSON response containing user details
+ * @memberof AdminAuthController
+ */
+
+
 export const resetPassword = async(req, res, next) => {
     // const {admin} = req;
     // const adminName = `${admin.full_name}, ${admin.email}, ${admin.resetPasswordToken}`;
@@ -129,9 +141,18 @@ export const resetPassword = async(req, res, next) => {
 }
 
 
+/** 
+*  Admin Add members
+ * @param {Request} req - The request from the endpoint.
+ * @param {Response} res - The response returned by the method.
+ * @param {Next} next - Call the next operation.
+ * @returns { JSON } - A JSON response containing user details
+ * @memberof AdminAuthController
+ */
+
+
 export const signUpMember = async(req, res) => {
     try{
-        console.log('im here')
         // const {body} = req;
         // const memberName = `${body.first_name} ${body.last_name} ${body.email} ${body.phone_number} ${body.image}`;
         var first_name = req.body.first_name;
@@ -145,6 +166,51 @@ export const signUpMember = async(req, res) => {
         return Response.success(res, enums.MEMBER_SUCCESSFULLY_ADDED, enums.HTTP_CREATED);
     } catch (error) {
         logger.error(`Adding member failed:::${enums.ADD_MEMBER_CONTROLLER}`, error.message);
+    }
+}
+
+
+/** 
+*  Admin Edit member
+ * @param {Request} req - The request from the endpoint.
+ * @param {Response} res - The response returned by the method.
+ * @param {Next} next - Call the next operation.
+ * @returns { JSON } - A JSON response containing user details
+ * @memberof AdminAuthController
+ */
+
+ export const editMember = async(req, res) => {
+    try {
+        const data = [req.body.first_name, req.body.last_name, req.body.phone_number, req.params.id ]
+        await processNoneData(authQueries.editMember, data)
+        logger.info(`${enums.CURRENT_TIME_STAMP}, ${req.body.email}:::Info: admin successfully update member account editMember.admin.controllers.admin.js`);
+        return Response.success(res, enums.MEMBER_SUCCESSFULLY_UPDATED, enums.HTTP_CREATED);
+    } catch(error) {
+        logger.error(`Updating member failed:::${enums.UPDATING_MEMBER_CONTROLLER}`, error.message);
+    }
+ }
+
+
+/** 
+*  Admin Delete member
+ * @param {Request} req - The request from the endpoint.
+ * @param {Response} res - The response returned by the method.
+ * @param {Next} next - Call the next operation.
+ * @returns { JSON } - A JSON response containing user details
+ * @memberof AdminAuthController
+ */
+
+
+export const deleteMember = async(req, res) => {
+    const id = req.params.id;
+    try {
+        await processAnyData(authQueries.deleteMember, [id]);
+        logger.info(`${enums.CURRENT_TIME_STAMP}, ${id} Info:
+     member successfully deleted from the DB deleteMember.admin.controllers.admin.js`);
+     return Response.success(res, enums.DELETE_MEMBER, enums.HTTP_OK);
+    } catch(error) {
+        error.label = enums.DELETE_MEMBER_CONTROLLER
+        logger.error(`delete admin failed:::${enums.DELETE_MEMBER_CONTROLLER}`, error.message);
         console.log(error)
     }
 }

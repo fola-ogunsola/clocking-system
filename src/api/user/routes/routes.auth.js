@@ -47,4 +47,10 @@ AuthMiddleware.validateAdminAuthenticationToken,
 AuthMiddleware.checkIfMemberEmailAlreadyExist,
 AuthController.signUpMember
 )
+
+
+router.delete('/:id',
+AuthMiddleware.validateAdminAuthenticationToken,
+AuthController.deleteMember
+)
 export default router;
