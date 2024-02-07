@@ -2,7 +2,7 @@
 import dayjs from 'dayjs';
 const bcrypt = require('bcryptjs');
 import authQueries from '../queries/queries.auth'
-import { processAnyData, processNoneData,  processNoneData} from '../services/services.db';
+import { processAnyData, processNoneData} from '../services/services.db';
 import Response from '../../../lib/http/lib.http.responses';
 import enums from '../../../lib/enums';
 import config from '../../../config';
@@ -99,6 +99,27 @@ export const forgotPassword = async(req, res, next) => {
 
 
 
+export const generateAdminPasswordResetToken = async(req, res, next) => {
+    const {admin} = req;
+    const adminName = `${admin.id}`;
+    try {
+        const passwordToken = await Hash.generateAdminResetPasswordToken(admin);
+        logger.info(`${enums.CURRENT_TIME_STAMP},::: Info: successfully generated password token generateAdminPasswordResetToken.admin.controllers.auth.js`);
+        // const tokenExpiration = await JSON.parse(Buffer.from(passwordToken.split('.')[1], 'base64').toString()).exp;
+        // const myDate = new Date(tokenExpiration * 1000);
+        // const tokenExpireAt = dayjs(myDate);
+        logger.info(`${enums.CURRENT_TIME_STAMP}, :::Info: successfully fetched token expiration time and converted it 
+        generateAdminPasswordResetToken.admin.controllers.auth.js`);
+        console.log(passwordToken)
+        return Response.success(res, enums.GENERATE_ADMIN_RESET_PASSWORD_TOKEN, enums.HTTP_OK,  {passwordToken});
+    } catch (error) {
+        error.label = enums.GENERATE_ADMIN_PASSWORD_TOKEN_CONTROLLER;
+        logger.error(`generate password reset token failed${enums.GENERATE_ADMIN_PASSWORD_TOKEN_CONTROLLER}`, error.message);
+        return next(error);
+    }
+}
+
+
 /** 
 *  Admin Reset password
  * @param {Request} req - The request from the endpoint.
@@ -114,15 +135,15 @@ export const resetPassword = async(req, res, next) => {
     // const adminName = `${admin.full_name}, ${admin.email}, ${admin.resetPasswordToken}`;
     // const new_password = req.body.new_password
     try {
-        const { body: { email , new_password} } = req;
-        const [ admin ] = await processAnyData(authQueries.getAdminByEmail, [ email.trim().toLowerCase() ]);
+        const { body: { password} , admin} = req;
+        // const [ admin ] = await processAnyData(authQueries.getAdminByEmail, [ email.trim().toLowerCase() ]);
         // if(!admin) {
         //     logger.info(`${enums.CURRENT_TIME_STAMP}, Info: successfully decoded that the user with the email does not exist in the DB 
         //     verifyAdminVerificationToken.admin.middlewares.auth.js`);
         //     return Response.error(res, enums.ACCOUNT_NOT_EXIST('Admin'), enums.HTTP_UNAUTHORIZED, enums.VERIFY_ADMIN_VERIFICATION_TOKEN_MIDDLEWARE);
         // }
         logger.info(`${enums.CURRENT_TIME_STAMP}, Info: Admin is fetched successfully resetPassword.admin.controllers.auth.js`);
-        const hash = await Hash.hashData(new_password.trim());
+        const hash = await Hash.hashData(password.trim());
         console.log(hash)
         logger.info(`${enums.CURRENT_TIME_STAMP}, ${admin.email}:::Info: password hashed resetPassword.admin.controllers.auth.js`);
         const [ setNewPassword ] = await processAnyData(authQueries.setNewAdminPassword, [  hash,　admin.email ]);

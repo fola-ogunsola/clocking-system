@@ -17,5 +17,7 @@ export const SESSION_EXPIRED = 'Session expired';
 export const MEMBER_SUCCESSFULLY_ADDED = 'Member successfully added';
 export const MEMBER_EMAIL_EXIST = 'Member Email already exist';
 export const DELETE_MEMBER = 'Member deleted successfully';
-export const MEMBER_SUCCESSFULLY_UPDATED = 'Member successfully updated'
+export const MEMBER_SUCCESSFULLY_UPDATED = 'Member successfully updated';
+export const GENERATE_ADMIN_RESET_PASSWORD_TOKEN = 'Password token Successfully generated';
+export const MEMBER_ID_EXIST = 'Member id already exist';
 

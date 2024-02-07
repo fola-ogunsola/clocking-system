@@ -6,12 +6,9 @@ import config from '../../../config';
 export const generateAdminAuthToken = (admin) => {
     try {
       const { email} = admin;
-      console.log(config.CLOCKING_SYSTEM_ENCODING_AUTHENTICATION_SECRET)
       const token = jwt.sign({ email}, config.CLOCKING_SYSTEM_ENCODING_AUTHENTICATION_SECRET, { expiresIn: '24h' });
-      console.log(token)
       return token;
     } catch (error) {
-      console.log(error)
       return error;
     }
   };
@@ -28,6 +25,17 @@ export const generateAdminAuthToken = (admin) => {
   export const decodeToken = (token) => {
     try {
       return jwt.verify(token, config.CLOCKING_SYSTEM_ENCODING_AUTHENTICATION_SECRET);
+    } catch (error) {
+      return error;
+    }
+  };
+
+
+  export const generateAdminResetPasswordToken = (admin) => {
+    try {
+      console.log(admin)
+      const { email } = admin;
+     return jwt.sign({ email }, config.CLOCKING_SYSTEM_ENCODING_AUTHENTICATION_SECRET, { expiresIn: '5m' });
     } catch (error) {
       return error;
     }

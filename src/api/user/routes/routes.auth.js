@@ -37,8 +37,15 @@ AuthController.forgotPassword
 router.post('/verify-reset-token',
 Model(Schema.verifyOtp, 'payload'),
 AuthMiddleware.verifyAdminVerificationToken,
+AuthController.generateAdminPasswordResetToken
+)
+
+router.post('/reset-password',
+AuthMiddleware.validateAdminAuthenticationToken,
+Model(Schema.setPassword, 'payload'),
+// AuthMiddleware.compareAdminPassword,
 AuthController.resetPassword
- )
+)
 
 router.post('/signup-member',
 upload.single('profile_image'),
@@ -52,5 +59,12 @@ AuthController.signUpMember
 router.delete('/:id',
 AuthMiddleware.validateAdminAuthenticationToken,
 AuthController.deleteMember
+)
+
+router.put('/:id',
+Model(Schema.editMember, 'payload'),
+AuthMiddleware.validateAdminAuthenticationToken,
+// AuthMiddleware.checkIfMemberIdExist,
+AuthController.editMember
 )
 export default router;
