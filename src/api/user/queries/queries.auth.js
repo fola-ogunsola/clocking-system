@@ -46,6 +46,58 @@ export default {
     getMemberById: `
     SELECT id 
     FROM members
-    WHERE id = $1`
-     
+    WHERE id = $1`,
+    getAllMembers: `
+    SELECT 
+    id , profile_image, 
+    first_name , last_name ,
+    email, phone_number, created_at AS date_added
+    FROM members
+    WHERE (TRIM(CONCAT(first_name, ' ', last_name)) ILIKE TRIM($1)
+    OR TRIM(CONCAT(last_name, ' ', first_name)) ILIKE TRIM($1)
+    OR email ILIKE $1
+    OR $1 IS NULL)
+    AND (created_at::DATE = $2
+    OR $2 IS NULL)`,
+    getAllMembersCount: `
+    SELECT
+    COUNT(id) AS total_count
+    FROM members
+    WHERE (TRIM(CONCAT(first_name, ' ', last_name)) ILIKE TRIM($1)
+    OR TRIM(CONCAT(last_name, ' ', first_name)) ILIKE TRIM($1)
+    OR $1 IS NULL)
+    AND (created_at::DATE = $2
+    OR $2 IS NULL)`,
+    getMember: `
+    SELECT 
+    id , profile_image, 
+    first_name , last_name ,
+    email, phone_number, created_at AS date_added
+    FROM members
+    WHERE (TRIM(CONCAT(first_name, ' ', last_name)) ILIKE TRIM($1)
+    OR TRIM(CONCAT(last_name, ' ', first_name)) ILIKE TRIM($1)
+    OR first_name ILIKE TRIM($1)
+    OR last_name ILIKE TRIM($1)
+    OR email ILIKE $1
+    OR $1 IS NULL)`,
+    clockInMember: `
+    INSERT INTO "clock-history"(
+        member_id
+    ) 
+    VALUES($1)
+    RETURNING "clock-history".id, "clock-history".clock_in, "clock-history".clock_in_time`,
+    // updateClockInMember: `
+    // UPDATE clock-history 
+    // SET clock_in = true 
+    // WHERE member_id = $1`,
+    clockOutMember: `
+    UPDATE "clock-history" 
+    SET clock_out = true 
+    WHERE member_id = $1`,
+    ifMemberClockInForTheDay: `
+    SELECT id , clock_in, clock_out 
+    FROM "clock-history" 
+    WHERE member_id = $1 
+    AND DATE_TRUNC('day', created_at) = CURRENT_DATE`
+
 }

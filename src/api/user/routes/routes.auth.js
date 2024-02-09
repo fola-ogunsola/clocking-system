@@ -6,7 +6,7 @@ import Schema from '../../../lib/schemas/admin/lib.schema.admin.auth'
 import * as AdminMiddleware from '../middlewares/middlewares.admin'
 import * as AuthMiddleware from '../middlewares/middlewares.auth';
 import * as AuthController from '../controllers/index'
-import upload from '../../../config/s3/index'
+
 
 
 const router = Router();
@@ -31,14 +31,14 @@ router.post('/forgot-password',
 Model(Schema.adminForgotPassword, 'payload'),
 AdminMiddleware.validateUnAuthenticatedAdmin('verify'),
 AuthController.forgotPassword
-)
+);
 
 
 router.post('/verify-reset-token',
 Model(Schema.verifyOtp, 'payload'),
 AuthMiddleware.verifyAdminVerificationToken,
 AuthController.generateAdminPasswordResetToken
-)
+);
 
 router.post('/reset-password',
 AuthMiddleware.validateAdminAuthenticationToken,
@@ -47,24 +47,4 @@ Model(Schema.setPassword, 'payload'),
 AuthController.resetPassword
 )
 
-router.post('/signup-member',
-upload.single('profile_image'),
-Model(Schema.addMember, 'payload'),
-AuthMiddleware.validateAdminAuthenticationToken,
-AuthMiddleware.checkIfMemberEmailAlreadyExist,
-AuthController.signUpMember
-)
-
-
-router.delete('/:id',
-AuthMiddleware.validateAdminAuthenticationToken,
-AuthController.deleteMember
-)
-
-router.put('/:id',
-Model(Schema.editMember, 'payload'),
-AuthMiddleware.validateAdminAuthenticationToken,
-// AuthMiddleware.checkIfMemberIdExist,
-AuthController.editMember
-)
 export default router;

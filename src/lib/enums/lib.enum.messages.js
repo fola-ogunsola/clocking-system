@@ -19,5 +19,10 @@ export const MEMBER_EMAIL_EXIST = 'Member Email already exist';
 export const DELETE_MEMBER = 'Member deleted successfully';
 export const MEMBER_SUCCESSFULLY_UPDATED = 'Member successfully updated';
 export const GENERATE_ADMIN_RESET_PASSWORD_TOKEN = 'Password token Successfully generated';
-export const MEMBER_ID_EXIST = 'Member id already exist';
+export const MEMBER_ID_EXIST = 'Member id does not  exist';
+export const MEMBERS_FETCHED_SUCCESSFULLY = 'Members fetched successfully';
+export const EXPORT_MEMBER_TO_CLOCK_IN_SUCCESSFULLY = 'export member to clock-in successfully';
+export const CLOCK_OUT_MEMBER = 'Member successfully clock out'
+export const CLOCK_IN_MEMBER = 'Member successfully clock in'
+export const MEMBER_ALREADY_CLOCK_IN = 'Member clock in already'
 

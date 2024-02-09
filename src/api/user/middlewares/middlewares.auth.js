@@ -88,25 +88,26 @@ export const checkIfMemberEmailAlreadyExist = async(req, res, next) => {
 };
 
 
-// export const checkIfMemberIdExist = async(req, res, next) => {
-//   try {
-//     const {admin} = req.params;
-//     if(!admin.id) {
-//       console.log(admin.id)
-//       logger.info(`${enums.CURRENT_TIME_STAMP},:::Info: 
-//       successfully confirms that member's id is not existing in the database checkIfMemberIdExist.admin.middlewares.admin.js`);
-//       return next();
-//     }
-//     logger.info(`${enums.CURRENT_TIME_STAMP}, :::Info: 
-//     successfully confirms that member's id is existing in the database checkIfAminEmailAlreadyExist.admin.middlewares.admin.js`);
-//     return Response.error(res, enums.MEMBER_ID_EXIST, enums.HTTP_CONFLICT, enums.CHECK_IF_MEMBER_ID_MIDDLEWARE);
-//   } catch (error) {
-//     error.label = enums.CHECK_IF_MEMBER_ID_MIDDLEWARE;
-//     logger.error(`checking if member email is not already existing failed::${enums.CHECK_IF_MEMBER_ID_MIDDLEWARE}`, error.message);
-//     // return next(error);
-//     console.log(error)
-//   }
-// }
+export const checkIfMemberIdExist = async(req, res, next) => {
+  try {
+    const id = req.params.id;
+    const [memberId] = await processAnyData(authQueries.getMemberById, [id])
+    if(!memberId) {
+      console.log(memberId)
+      logger.info(`${enums.CURRENT_TIME_STAMP},:::Info: 
+      successfully confirms that member's id is not existing in the database checkIfMemberIdExist.admin.middlewares.admin.js`);
+      return Response.error(res, enums.MEMBER_ID_EXIST, enums.HTTP_CONFLICT, enums.CHECK_IF_MEMBER_ID_MIDDLEWARE);
+    }
+    logger.info(`${enums.CURRENT_TIME_STAMP}, :::Info: 
+    successfully confirms that member's id is existing in the database checkIfMemberIdExist.admin.middlewares.admin.js`);
+    return next();
+  } catch (error) {
+    error.label = enums.CHECK_IF_MEMBER_ID_MIDDLEWARE;
+    logger.error(`checking if member email is not already existing failed::${enums.CHECK_IF_MEMBER_ID_MIDDLEWARE}`, error.message);
+    // return next(error);
+    console.log(error)
+  }
+}
 
 
 export const validateAdminAuthenticationToken = async(req, res, next) => {
