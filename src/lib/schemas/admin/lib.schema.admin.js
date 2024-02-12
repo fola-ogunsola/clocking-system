@@ -37,9 +37,19 @@ const addMember = Joi.object().keys({
   });
 
 
+  const setNewPassword = Joi.object().keys({
+    email: Joi.string().email().required(),
+    new_password: Joi.string().regex(new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')).messages({
+      'string.pattern.base': 'Invalid password combination'
+    }).required().min(8),
+    confirm_password: Joi.string().required(),
+    old_password: Joi.string().required()
+  });
+
   export default {
     addMember,
     editMember,
     fetchMembers,
-    fetchOneMember
+    fetchOneMember,
+    setNewPassword
   }

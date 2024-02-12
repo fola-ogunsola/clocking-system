@@ -6,6 +6,8 @@ import Response from '../../../lib/http/lib.http.responses';
 import enums from '../../../lib/enums';
 import * as Helpers from '../../../lib/utils/admin/lib.utils.admin.helper'
 import MemberPayload from '../../../lib/payloads/admin/lib.payload.admin.admin'
+import * as Hash from '../../../lib/utils/admin/lib.utils.admin.hash';
+import { hash } from 'bcrypt';
 
 
 /** 
@@ -115,3 +117,107 @@ export const fetchMembers = async(req, res, next) => {
         return next(error);
       }
 };
+
+export const fetchAllMembersWithClockInAndClockOut = async(req, res, next) =>{
+    try {
+        const {query} = req;
+        const payload = MemberPayload.fetchMembers(query);
+        // const getMembersCount = await processAnyData(authQueries.getAllMembersCount, [membersCount])
+        console.log(payload)
+        const [ members, [ membersCount ] ] = await Promise.all([
+            processAnyData(authQueries.getAllMembersWithCheckInAndCheckOut, payload),
+            processAnyData(authQueries.getAllMembersWithCheckInAndCheckOutCount, payload)
+          ]);
+        logger.info(`${enums.CURRENT_TIME_STAMP},Info: successfully fetched all members  with clock-in time and clock-out time from the DB fetchAllMembersWithClockInAndClockOut.admin.controllers.role.js`);
+        const data = {
+            page: parseFloat(req.query.page) || 1,
+            total_count: Number(membersCount.total_count),
+            total_pages: Helpers.calculatePages(Number(membersCount.total_count), Number(req.query.per_page) || 10),
+            members
+          };
+          return Response.success(res, enums.MEMBERS_FETCHED_WITH_CLOCKIN_AND_CLOCKOUT_SUCCESSFULLY, enums.HTTP_OK, data);
+    } catch (error) {
+        console.log(error)
+        error.label = enums.MEMBERS_FETCHED_WITH_CLOCKIN_AND_CLOCKOUT_SUCCESSFULLY_CONTROLLER;
+        logger.error(`fetching clock-in and clock-out time in the DB failed:::${enums.MEMBERS_FETCHED_WITH_CLOCKIN_AND_CLOCKOUT_SUCCESSFULLY_CONTROLLER}`, error.message);
+        return next(error); 
+    }
+}
+
+export const getTotal = async(req, res, next) => {
+    try {
+        const [getTotalNumberOfClockIn, getTotalNumberOfClockOut, getTotalNumberOfMembers] = await Promise.all([
+            processAnyData(authQueries.getTotalNumberOfClockIn),
+            processAnyData(authQueries.getTotalNumberOfClockOut),
+            processAnyData(authQueries.getTotalNumberOfMembers)
+        ]);
+        logger.info(`${enums.CURRENT_TIME_STAMP},Info: successfully fetched all totals from the DB getTotal.admin.controllers.role.js`);
+        const data = {
+            getTotalNumberOfClockIn,
+            getTotalNumberOfClockOut,
+            getTotalNumberOfMembers
+        };
+        return Response.success(res, enums.FETCHED_TOTAL_SUCCESSFULLY, enums.HTTP_OK, data);
+    } catch (error) {
+        error.label = enums.FETCH_TOTALS_CONTROLLER;
+        logger.error(`fetching totals in the DB failed:::${enums.FETCH_TOTALS_CONTROLLER}`, error.message);
+        return next(error);
+      }
+}
+
+export const recentlyAddedMembers = async(req, res, next) => {
+    try {
+        const recentlyAddedMembers = await processAnyData(authQueries.recentlyAddedMembers)
+        logger.info(`${enums.CURRENT_TIME_STAMP},Info: successfully fetched all recently added member from the DB recentlyAddedMembers.admin.controllers.role.js`);
+        return Response.success(res, enums.RECENTLY_MEMBERS_FETCHED_SUCCESSFULLY, enums.HTTP_OK, recentlyAddedMembers);
+    } catch (error) {
+        error.label = enums.FETCH_RECENTLY_CONTROLLER;
+        logger.error(`fetching recently added members in the DB failed:::${enums.FETCH_RECENTLY_CONTROLLER}`, error.message);
+        console.log(error)
+        return next(error);
+      }
+}
+
+export const recentlyClockInMembers = async(req, res, next) => {
+    try {
+        const recentlyClockInMembers = await processAnyData(authQueries.recentlyClockInMembers)
+        logger.info(`${enums.CURRENT_TIME_STAMP},Info: successfully fetched all recently clock-in member from the DB recentlyAddedClockIn.admin.controllers.role.js`);
+        return Response.success(res, enums.RECENTLY_CLOCK_IN_MEMBERS_FETCHED_SUCCESSFULLY, enums.HTTP_OK, recentlyClockInMembers);
+    } catch (error) {
+        error.label = enums.FETCH_RECENTLY_CLOCK_IN_CONTROLLER;
+        logger.error(`fetching recently clock-in members in the DB failed:::${enums.FETCH_RECENTLY_CLOCK_IN_CONTROLLER}`, error.message);
+        console.log(error)
+        return next(error);
+      }
+}
+
+
+export const changeAdminPassword = async(req, res, next) => {
+    try {
+        const email = req.body.email;
+        const new_password = req.body.new_password;
+        const old_password = req.body.old_password;
+        const confirm_password = req.body.confirm_password;
+        const {admin} = req;
+        if(new_password === confirm_password){
+            const comparepassword = await Hash.compareData(old_password, admin.password);
+            if (comparepassword){
+                const hash = await Hash.hashData(new_password.trim());
+                logger.info(`${enums.CURRENT_TIME_STAMP}, ${admin.email}:::Info: New password hashed Successfully changeAdminPassword.admin.controllers.auth.js`);
+                const [setNewPassword] = await processAnyData(authQueries.setNewAdminPassword, [hash, email]);
+                logger.info(`${enums.CURRENT_TIME_STAMP}, ${admin.email}:::Info: New password saved in the DB setPassword.admin.controllers.auth.js`);
+                return Response.success(res, enums.PASSWORD_SET_SUCCESSFULLY, enums.HTTP_OK, setNewPassword);
+            }
+            logger.info(`${enums.CURRENT_TIME_STAMP},Info: Check the Old Password you Provided changeAdminPassword.admin.controllers.role.js`);
+            return Response.error(res, enums.PASSWORD_SET_UNSUCCESSFULLY, enums.HTTP_UNPROCESSABLE_ENTITY);
+        } else {
+            logger.info(`${enums.CURRENT_TIME_STAMP},Info: Your new password and comfirm password are not the same  changeAdminPassword.admin.controllers.role.js`);
+            return Response.error(res, enums.PASSWORD_SET_UNCONFIRMED, enums.HTTP_UNPROCESSABLE_ENTITY);
+        }
+    } catch (error) {
+        error.label = enums.SET_NEW_PASSWORD_CONTROLLER;
+        logger.error(`Setting New Password DB failed:::${enums.SET_NEW_PASSWORD_CONTROLLER}`, error.message);
+        console.log(error)
+        return next(error);
+      }
+}

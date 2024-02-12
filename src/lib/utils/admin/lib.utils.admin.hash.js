@@ -22,6 +22,8 @@ export const generateAdminAuthToken = (admin) => {
     return false;
   };
 
+  export  const compareData = (data, hash) => bcrypt.compareSync(data, hash);
+
   export const decodeToken = (token) => {
     try {
       return jwt.verify(token, config.CLOCKING_SYSTEM_ENCODING_AUTHENTICATION_SECRET);

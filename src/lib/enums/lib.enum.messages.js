@@ -22,7 +22,13 @@ export const GENERATE_ADMIN_RESET_PASSWORD_TOKEN = 'Password token Successfully 
 export const MEMBER_ID_EXIST = 'Member id does not  exist';
 export const MEMBERS_FETCHED_SUCCESSFULLY = 'Members fetched successfully';
 export const EXPORT_MEMBER_TO_CLOCK_IN_SUCCESSFULLY = 'export member to clock-in successfully';
-export const CLOCK_OUT_MEMBER = 'Member successfully clock out'
-export const CLOCK_IN_MEMBER = 'Member successfully clock in'
-export const MEMBER_ALREADY_CLOCK_IN = 'Member clock in already'
-
+export const CLOCK_OUT_MEMBER = 'Member successfully clock out';
+export const CLOCK_IN_MEMBER = 'Member successfully clock in';
+export const MEMBER_ALREADY_CLOCK_IN = 'Member clock in already';
+export const MEMBER_ALREADY_CLOCK_OUT = 'Member clock out already';
+export const FETCHED_TOTAL_SUCCESSFULLY = 'Successfully fetched totals';
+export const RECENTLY_MEMBERS_FETCHED_SUCCESSFULLY = 'Members added recently fetched successfully';
+export const RECENTLY_CLOCK_IN_MEMBERS_FETCHED_SUCCESSFULLY = 'Recently clock in members fetched successfully';
+export const MEMBERS_FETCHED_WITH_CLOCKIN_AND_CLOCKOUT_SUCCESSFULLY = 'Members fetched with clock-in time and clock-out time successfully';
+export const PASSWORD_SET_UNSUCCESSFULLY = 'Unable to set new password, check the old password you provided';
+export const PASSWORD_SET_UNCONFIRMED = 'Unable to set new password, your new password and old password are not the same';

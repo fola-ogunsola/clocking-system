@@ -17,6 +17,12 @@ export const UPDATING_MEMBER_CONTROLLER = 'AdminController::updateMember';
 export const GENERATE_ADMIN_PASSWORD_TOKEN_CONTROLLER = 'AdminAuthController::generateAdminPasswordResetToken';
 export const CHECK_IF_MEMBER_ID_MIDDLEWARE = 'AdminAuthMiddleware::checkIfMemberIdExist'
 export const FETCH_MEMBERS_CONTROLLER = 'AdminController::fetchMembers';
-export const FETCH_ONE_MEMBERS_CONTROLLER = 'AdminController::fetchOneMenber'
-export const CLOCK_OUT_MEMBER_CONTROLLER = 'MemberController::clockOutMember'
-export const CLOCK_IN_MEMBER_CONTROLLER = 'MemberController::clockInMember'
+export const FETCH_ONE_MEMBERS_CONTROLLER = 'AdminController::fetchOneMenber';
+export const CLOCK_OUT_MEMBER_CONTROLLER = 'MemberController::clockOutMember';
+export const CLOCK_IN_MEMBER_CONTROLLER = 'MemberController::clockInMember';
+export const FETCH_TOTALS_CONTROLLER = 'AdminController::getTotal';
+export const FETCH_RECENTLY_CONTROLLER = 'AdminController::recentlyAddedMembers';
+export const FETCH_RECENTLY_CLOCK_IN_CONTROLLER = 'AdminController::recentlyClockInMembers';
+export const MEMBERS_FETCHED_WITH_CLOCKIN_AND_CLOCKOUT_SUCCESSFULLY_CONTROLLER = 'AdminController::fetchAllMembersWithClockInAndClockOut';
+export const SET_NEW_PASSWORD_CONTROLLER = 'AdminController::changeAdminPassword'
+

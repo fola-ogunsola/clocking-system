@@ -1,10 +1,9 @@
 import dayjs from 'dayjs';
 const bcrypt = require('bcryptjs');
 import authQueries from '../queries/queries.auth'
-import { processAnyData, processOneOrNoneData} from '../services/services.db';
+import { processAnyData, processOneOrNoneData,processNoneData} from '../services/services.db';
 import Response from '../../../lib/http/lib.http.responses';
 import enums from '../../../lib/enums';
-import MemberPayload from '../../../lib/payloads/admin/lib.payload.admin.admin'
 
 /** 
 *  Admin Fetch One members
@@ -46,11 +45,12 @@ export const fetchOneMenber = async(req, res, next) =>  {
 export const clockInMember = async(req, res, next) => {
     const id = req.params.id;
     try {
-        const [ ifMemberClockInForTheDay ] = await processAnyData(authQueries.ifMemberClockInForTheDay, [id])
-        if(ifMemberClockInForTheDay){
+        const ifMemberClockInForTheDay = await processOneOrNoneData(authQueries.ifMemberClockForTheDay, [id]);
+        console.log(ifMemberClockInForTheDay)
+        if(ifMemberClockInForTheDay.clock_in == true){
             logger.info(`${enums.CURRENT_TIME_STAMP}, ${id} Info:
             member already clock in clockInMember.admin.controllers.admin.js`);
-            return Response.error(res, enums.MEMBER_ALREADY_CLOCK_IN, enums.HTTP_CONFLICT); 
+            return Response.error(res, enums.MEMBER_ALREADY_CLOCK_IN, enums.HTTP_FORBIDDEN); 
         }
         const response = await processOneOrNoneData(authQueries.clockInMember, [id]);
         console.log(response)
@@ -74,16 +74,18 @@ export const clockInMember = async(req, res, next) => {
  * @returns {object} - Returns admin login details.
  * @memberof MemberController
  */
+
 export const clockOutMember = async(req, res, next) => {
     const id = req.params.id;
     try {
-        // const ifMemberClockInForTheDay  = await processOneOrNoneData(authQueries.ifMemberClockInForTheDay, [id])
-        // if(ifMemberClockInForTheDay.clock_out  == false ){
-        //     logger.info(`${enums.CURRENT_TIME_STAMP}, ${id} Info:
-        //     you are yet to clock in, kindly check in  clockOutMember.member.controllers.admin.js`);
-        //     return Response.error(res, enums.MEMBER_ALREADY_CLOCK_IN, enums.HTTP_CONFLICT); 
-        // }
-        await processAnyData(authQueries.clockOutMember, [id]);
+        const ifMemberClockInForTheDay = await processOneOrNoneData(authQueries.ifMemberClockForTheDay, [id]);
+        console.log(ifMemberClockInForTheDay)
+        if(ifMemberClockInForTheDay.clock_out == true){
+            logger.info(`${enums.CURRENT_TIME_STAMP}, ${id} Info:
+            member already clock out clockInMember.admin.controllers.admin.js`);
+            return Response.error(res, enums.MEMBER_ALREADY_CLOCK_OUT, enums.HTTP_FORBIDDEN); 
+        }
+        await processNoneData(authQueries.clockOutMember, [id]);
         logger.info(`${enums.CURRENT_TIME_STAMP}, ${id} Info:
         member successfully clock out from the DB clockOutMember.admin.controllers.admin.js`);
         return Response.success(res, enums.CLOCK_OUT_MEMBER, enums.HTTP_OK);

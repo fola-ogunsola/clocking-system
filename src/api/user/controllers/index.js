@@ -148,7 +148,7 @@ export const resetPassword = async(req, res, next) => {
         console.log(hash)
         logger.info(`${enums.CURRENT_TIME_STAMP}, ${admin.email}:::Info: password hashed resetPassword.admin.controllers.auth.js`);
         const [ setNewPassword ] = await processAnyData(authQueries.setNewAdminPassword, [  hash,　admin.email ]);
-        logger.info(`${enums.CURRENT_TIME_STAMP}, ${admin.email}:::Info: hashed password saved in the DB setPassword.admin.controllers.auth.js`);
+        logger.info(`${enums.CURRENT_TIME_STAMP}, ${admin.email}:::Info: Reset password saved in the DB setPassword.admin.controllers.auth.js`);
         const data = {
             email: admin.email,
             full_name: admin.full_name
