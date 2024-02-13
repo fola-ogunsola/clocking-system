@@ -70,7 +70,7 @@ export const verifyAdminVerificationToken = async(req, res, next) => {
 export const checkIfMemberEmailAlreadyExist = async(req, res, next) => {
   try {
     const { body } = req;
-    const [ memberEmail ] = await processAnyData(authQueries.getMemberByEmail, [ body.email.trim().toLowerCase() ]);
+    const [ memberEmail ] = await processAnyData(authQueries.getMemberByEmail, [ body.email ]);
     if (!memberEmail) {
       logger.info(`${enums.CURRENT_TIME_STAMP},:::Info: 
       successfully confirms that member's email is not existing in the database checkIfAdminEmailAlreadyExist.admin.middlewares.admin.js`);
@@ -86,6 +86,7 @@ export const checkIfMemberEmailAlreadyExist = async(req, res, next) => {
     console.log(error)
   }
 };
+
 
 
 export const checkIfMemberIdExist = async(req, res, next) => {

@@ -2,7 +2,7 @@
 import dayjs from 'dayjs';
 const bcrypt = require('bcryptjs');
 import authQueries from '../queries/queries.auth'
-import { processAnyData, processNoneData} from '../services/services.db';
+import { processAnyData} from '../services/services.db';
 import Response from '../../../lib/http/lib.http.responses';
 import enums from '../../../lib/enums';
 import config from '../../../config';

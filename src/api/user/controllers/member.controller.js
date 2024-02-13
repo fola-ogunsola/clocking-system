@@ -47,7 +47,7 @@ export const clockInMember = async(req, res, next) => {
     try {
         const ifMemberClockInForTheDay = await processOneOrNoneData(authQueries.ifMemberClockForTheDay, [id]);
         console.log(ifMemberClockInForTheDay)
-        if(ifMemberClockInForTheDay.clock_in == true){
+        if(ifMemberClockInForTheDay && ifMemberClockInForTheDay.clock_in == true){
             logger.info(`${enums.CURRENT_TIME_STAMP}, ${id} Info:
             member already clock in clockInMember.admin.controllers.admin.js`);
             return Response.error(res, enums.MEMBER_ALREADY_CLOCK_IN, enums.HTTP_FORBIDDEN); 

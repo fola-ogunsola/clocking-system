@@ -1,0 +1,1377 @@
+{
+	"info": {
+		"_postman_id": "eb05f7a0-5fc9-4934-9a46-d50f266cee44",
+		"name": "clock-system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9439039"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer accessKEy",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "tariff_type_id",
+							"value": "2364732",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "phone_number",
+							"value": "2348138874063",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "25",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "folakemi@enyata.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "folakemi",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer accessKEy",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "tariff_type_id",
+									"value": "2364732",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone_number",
+									"value": "2348138874063",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "25",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "folakemi@enyata.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "folakemi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:9089/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9089",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Security-Policy",
+							"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Resource-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Origin-Agent-Cluster",
+							"value": "?1"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, PATCH, DELETE"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Authorization, Origin, Content-Type, Accept"
+						},
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": "true"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "296"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"128-E8GnNVvA5klaDpH4tds8eiuW08M\""
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Feb 2024 11:27:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Admin logged in successfully\",\n    \"code\": 200,\n    \"data\": {\n        \"id\": null,\n        \"full_name\": \"Super Admin\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDcxMzI0MzgsImV4cCI6MTcwNzEzNjAzOH0.V1iT7e5hfSE7lNISaFEZdzWT7JMocDifI-KCsgtwFGU\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "forgot-password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer accessKEy",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "tariff_type_id",
+							"value": "2364732",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "phone_number",
+							"value": "2348138874063",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "25",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "folakemi@enyata.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "4dm1nF0la*",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/auth/forgot-password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"forgot-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify-reset-token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer accessKEy",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "tariff_type_id",
+							"value": "2364732",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "phone_number",
+							"value": "2348138874063",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "25",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "folakemi@enyata.com",
+							"type": "text"
+						},
+						{
+							"key": "otp",
+							"value": "4dm1nF0la*",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "otp",
+							"value": "718542",
+							"type": "text"
+						},
+						{
+							"key": "new_password",
+							"value": "folakemi",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/auth/verify-reset-token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"verify-reset-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reset-password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDczMDQ3NjMsImV4cCI6MTcwNzMwNTA2M30.210S951R8kjlwyYT92qpmZKBji3ECBgDtswVIp8wrV8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "tariff_type_id",
+							"value": "2364732",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "phone_number",
+							"value": "2348138874063",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "25",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "folakemi@enyata.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "otp",
+							"value": "4dm1nF0la*",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "otp",
+							"value": "291789",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "4dm1nF0la*",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/auth/reset-password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"reset-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup-member",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDc0MTMyMzAsImV4cCI6MTcwNzQ5OTYzMH0.LPWXrXklS1dUP866EBkmrp0EXnGnf7tcMVBJ33Wpw_g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "profile_image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "tariff_type_id",
+							"value": "2364732",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "first_name",
+							"value": "oluwatosin",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "adebayo",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "oluwatosinadebayo@enyata.com",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "+2348138874063",
+							"type": "text"
+						},
+						{
+							"key": "profile_image",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/admin/signup-member",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"signup-member"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch-one-member?search=9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDcxMzY4NDUsImV4cCI6MTcwNzIyMzI0NX0.4354ntjyf9U-ueUuKzddMiqC_Ak0ogfTCqioC_3mgBs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "profile_image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "tariff_type_id",
+							"value": "2364732",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "first_name",
+							"value": "prl",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "last_name",
+							"value": "ogunsola",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "dayo346424@enyata.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "phone_number",
+							"value": "+2348138874063",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "profile_image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "search",
+							"value": "pelu",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/member/fetch-one-member?search=9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"member",
+						"fetch-one-member"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "9"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "21",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDc0MTMyMzAsImV4cCI6MTcwNzQ5OTYzMH0.LPWXrXklS1dUP866EBkmrp0EXnGnf7tcMVBJ33Wpw_g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "tariff_type_id",
+							"value": "2364732",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "phone_number",
+							"value": "2348138874063",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "25",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "folakemi@enyata.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "folakemi",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "memberId",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/admin/21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "19",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDc0MTMyMzAsImV4cCI6MTcwNzQ5OTYzMH0.LPWXrXklS1dUP866EBkmrp0EXnGnf7tcMVBJ33Wpw_g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "awolola",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "adufe",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "+234564327845",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/admin/19",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"19"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "21",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDcxMzY4NDUsImV4cCI6MTcwNzIyMzI0NX0.4354ntjyf9U-ueUuKzddMiqC_Ak0ogfTCqioC_3mgBs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "profile_image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "tariff_type_id",
+							"value": "2364732",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "first_name",
+							"value": "fola",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "ogunsola",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "dayo346424@enyata.com",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "+2348138874063",
+							"type": "text"
+						},
+						{
+							"key": "profile_image",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/member/clock-out/21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"member",
+						"clock-out",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "21",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDcxMzY4NDUsImV4cCI6MTcwNzIyMzI0NX0.4354ntjyf9U-ueUuKzddMiqC_Ak0ogfTCqioC_3mgBs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "profile_image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "tariff_type_id",
+							"value": "2364732",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "first_name",
+							"value": "fola",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "ogunsola",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "dayo346424@enyata.com",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "+2348138874063",
+							"type": "text"
+						},
+						{
+							"key": "profile_image",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/member/clock-in/21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"member",
+						"clock-in",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch-members?search=fola&page=1&per_page=1&date=2024-02-05",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDc0Njc2NTQsImV4cCI6MTcwNzU1NDA1NH0.BvhjTwV6A1CKp5sG2TESGToYFtqOMX2uRq9d9IrGP0s",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "folu2",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "fola9",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "+234564327896",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/admin/fetch-members?search=fola&page=1&per_page=1&date=2024-02-05",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"fetch-members"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "fola"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "per_page",
+							"value": "1"
+						},
+						{
+							"key": "date",
+							"value": "2024-02-05"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-clocks-time?search=aduf&page=1&per_page=1&date=2024-02-05",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDc0Njc2NTQsImV4cCI6MTcwNzU1NDA1NH0.BvhjTwV6A1CKp5sG2TESGToYFtqOMX2uRq9d9IrGP0s",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "folu2",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "fola9",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "+234564327896",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/admin/get-clocks-time?search=aduf&page=1&per_page=1&date=2024-02-05",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"get-clocks-time"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "aduf"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "per_page",
+							"value": "1"
+						},
+						{
+							"key": "date",
+							"value": "2024-02-05"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-recent-clock-in",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDc0Njc2NTQsImV4cCI6MTcwNzU1NDA1NH0.BvhjTwV6A1CKp5sG2TESGToYFtqOMX2uRq9d9IrGP0s",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "folu2",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "fola9",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "+234564327896",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/admin/get-recent-clock-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"get-recent-clock-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-recent-members",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDc0Njc2NTQsImV4cCI6MTcwNzU1NDA1NH0.BvhjTwV6A1CKp5sG2TESGToYFtqOMX2uRq9d9IrGP0s",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "folu2",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "fola9",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "+234564327896",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "get-recent-members",
+					"host": [
+						"get-recent-members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-total",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDc0Njc2NTQsImV4cCI6MTcwNzU1NDA1NH0.BvhjTwV6A1CKp5sG2TESGToYFtqOMX2uRq9d9IrGP0s",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "folu2",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "fola9",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "+234564327896",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/admin/get-total",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"get-total"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change-password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZvbGFrZW1pQGVueWF0YS5jb20iLCJpYXQiOjE3MDc3Mzc0NTAsImV4cCI6MTcwNzgyMzg1MH0.TuQNy79JovV8FkRSue8RoBaEAdKEMSvCBCophDEtTPk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "tariff_type_id",
+							"value": "2364732",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "phone_number",
+							"value": "2348138874063",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "amount",
+							"value": "25",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "folakemi@enyata.com",
+							"type": "text"
+						},
+						{
+							"key": "old_password",
+							"value": "4dm1nF0la#",
+							"type": "text"
+						},
+						{
+							"key": "new_password",
+							"value": "4dm1nF0la*",
+							"type": "text"
+						},
+						{
+							"key": "confirm_password",
+							"value": "4dm1nF0la*",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9089/api/v1/admin/change-password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9089",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"change-password"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

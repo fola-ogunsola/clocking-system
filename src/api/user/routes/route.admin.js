@@ -28,7 +28,7 @@ AuthMiddleware.checkIfMemberEmailAlreadyExist,
 AdminController.signUpMember
 );
 
-router.post('/csv-upload',
+router.post('/bulk-upload',
 AuthMiddleware.validateAdminAuthenticationToken,
 // AuthMiddleware.checkIfMemberEmailAlreadyExist,
 csvUpload.uploadCsvFile
