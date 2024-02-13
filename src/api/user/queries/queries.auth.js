@@ -53,7 +53,7 @@ export default {
     first_name , last_name ,
     email, phone_number, created_at AS date_added
     FROM members
-    WHERE (TRIM(CONCAT(first_name, ' ', last_name)) ILIKE TRIM($1)
+    WHERE TRIM(CONCAT(first_name, ' ', last_name)) ILIKE TRIM($1)
     OR TRIM(CONCAT(last_name, ' ', first_name)) ILIKE TRIM($1)
     OR (email ILIKE $1 OR $1 IS NULL)
     AND (created_at::DATE = $2 OR $2 IS NULL)`,
@@ -61,11 +61,10 @@ export default {
     SELECT
     COUNT(id) AS total_count
     FROM members
-    WHERE (TRIM(CONCAT(first_name, ' ', last_name)) ILIKE TRIM($1)
+    WHERE TRIM(CONCAT(first_name, ' ', last_name)) ILIKE TRIM($1)
     OR TRIM(CONCAT(last_name, ' ', first_name)) ILIKE TRIM($1)
-    OR $1 IS NULL)
-    AND (created_at::DATE = $2
-    OR $2 IS NULL)`,
+    OR $1 IS NULL
+    AND (created_at::DATE = $2 OR $2 IS NULL)`,
     getMember: `
     SELECT 
     id , profile_image, 

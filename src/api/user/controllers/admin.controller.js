@@ -113,7 +113,7 @@ export const fetchMembers = async(req, res, next) => {
           return Response.success(res, enums.MEMBERS_FETCHED_SUCCESSFULLY, enums.HTTP_OK, data);
     } catch (error) {
         error.label = enums.FETCH_MEMBERS_CONTROLLER;
-        logger.error(`fetching roles in the DB failed:::${enums.FETCH_MEMBERS_CONTROLLER}`, error.message);
+        logger.error(`fetching members in the DB failed:::${enums.FETCH_MEMBERS_CONTROLLER}`, error.message);
         return next(error);
       }
 };
