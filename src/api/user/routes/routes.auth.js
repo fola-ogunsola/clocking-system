@@ -21,30 +21,30 @@ router.get(
 router.post('/hashpassword', hashPassword)
 
 router.post('/login',
-Model(Schema.adminLogin, 'payload'),
-AdminMiddleware.validateUnAuthenticatedAdmin('login'),
-AuthMiddleware.compareAdminPassword,
-AuthController.adminLogin
+  Model(Schema.adminLogin, 'payload'),
+  AdminMiddleware.validateUnAuthenticatedAdmin('login'),
+  AuthMiddleware.compareAdminPassword,
+  AuthController.adminLogin
 );
 
 router.post('/forgot-password',
-Model(Schema.adminForgotPassword, 'payload'),
-AdminMiddleware.validateUnAuthenticatedAdmin('verify'),
-AuthController.forgotPassword
+  Model(Schema.adminForgotPassword, 'payload'),
+  AdminMiddleware.validateUnAuthenticatedAdmin('verify'),
+  AuthController.forgotPassword
 );
 
 
 router.post('/verify-reset-token',
-Model(Schema.verifyOtp, 'payload'),
-AuthMiddleware.verifyAdminVerificationToken,
-AuthController.generateAdminPasswordResetToken
+  Model(Schema.verifyOtp, 'payload'),
+  AuthMiddleware.verifyAdminVerificationToken,
+  AuthController.generateAdminPasswordResetToken
 );
 
 router.post('/reset-password',
-AuthMiddleware.validateAdminAuthenticationToken,
-Model(Schema.setPassword, 'payload'),
+  AuthMiddleware.validateAdminAuthenticationToken,
+  Model(Schema.setPassword, 'payload'),
 // AuthMiddleware.compareAdminPassword,
-AuthController.resetPassword
+  AuthController.resetPassword
 )
 
 export default router;

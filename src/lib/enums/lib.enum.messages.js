@@ -32,3 +32,4 @@ export const RECENTLY_CLOCK_IN_MEMBERS_FETCHED_SUCCESSFULLY = 'Recently clock in
 export const MEMBERS_FETCHED_WITH_CLOCKIN_AND_CLOCKOUT_SUCCESSFULLY = 'Members fetched with clock-in time and clock-out time successfully';
 export const PASSWORD_SET_UNSUCCESSFULLY = 'Unable to set new password, check the old password you provided';
 export const PASSWORD_SET_UNCONFIRMED = 'Unable to set new password, your new password and old password are not the same';
+export const MEMBER_EMAIL_EXIST_FOR_BULK_UPLOAD = 'Member Email already exist for bulk upload';

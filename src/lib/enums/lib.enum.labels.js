@@ -24,5 +24,6 @@ export const FETCH_TOTALS_CONTROLLER = 'AdminController::getTotal';
 export const FETCH_RECENTLY_CONTROLLER = 'AdminController::recentlyAddedMembers';
 export const FETCH_RECENTLY_CLOCK_IN_CONTROLLER = 'AdminController::recentlyClockInMembers';
 export const MEMBERS_FETCHED_WITH_CLOCKIN_AND_CLOCKOUT_SUCCESSFULLY_CONTROLLER = 'AdminController::fetchAllMembersWithClockInAndClockOut';
-export const SET_NEW_PASSWORD_CONTROLLER = 'AdminController::changeAdminPassword'
+export const SET_NEW_PASSWORD_CONTROLLER = 'AdminController::checkIfMemberEmailExistForBulkUpload';
+export const CHECK_IF_MEMBER_EMAIL_ALREADY_EXIST_FOR_BULK_UPLOAD_MIDDLEWARE = 'AdminAuthMiddleware::checkIfMemberEmailExistForBulkUpload'
 

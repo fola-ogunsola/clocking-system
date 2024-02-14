@@ -21,65 +21,64 @@ router.get(
 );
 
 router.post('/signup-member',
-upload.single('profile_image'),
-Model(Schema.addMember, 'payload'),
-AuthMiddleware.validateAdminAuthenticationToken,
-AuthMiddleware.checkIfMemberEmailAlreadyExist,
-AdminController.signUpMember
+  upload.single('profile_image'),
+  Model(Schema.addMember, 'payload'),
+  AuthMiddleware.validateAdminAuthenticationToken,
+  AuthMiddleware.checkIfMemberEmailAlreadyExist,
+  AdminController.signUpMember
 );
 
 router.post('/bulk-upload',
-AuthMiddleware.validateAdminAuthenticationToken,
-// AuthMiddleware.checkIfMemberEmailAlreadyExist,
-csvUpload.uploadCsvFile
+  AuthMiddleware.validateAdminAuthenticationToken,
+  AuthMiddleware.checkIfMemberEmailExistForBulkUpload,
+  csvUpload.uploadCsvFile
 )
 
 router.delete('/:id',
-AuthMiddleware.validateAdminAuthenticationToken,
-AdminController.deleteMember
+  AuthMiddleware.validateAdminAuthenticationToken,
+  AdminController.deleteMember
 );
 
 router.put('/:id',
-Model(Schema.editMember, 'payload'),
-AuthMiddleware.validateAdminAuthenticationToken,
-AuthMiddleware.checkIfMemberIdExist,
-AdminController.editMember
+  Model(Schema.editMember, 'payload'),
+  AuthMiddleware.validateAdminAuthenticationToken,
+  AuthMiddleware.checkIfMemberIdExist,
+  AdminController.editMember
 );
 
 router.get('/fetch-members',
-AuthMiddleware.validateAdminAuthenticationToken,
-Model(Schema.fetchMembers, 'query'),
-AdminController.fetchMembers
+  AuthMiddleware.validateAdminAuthenticationToken,
+  Model(Schema.fetchMembers, 'query'),
+  AdminController.fetchMembers
 );
 
 router.get('/get-total',
-AuthMiddleware.validateAdminAuthenticationToken,
-AdminController.getTotal
+  AuthMiddleware.validateAdminAuthenticationToken,
+  AdminController.getTotal
 );
 
 router.get('/get-recent-members',
-AuthMiddleware.validateAdminAuthenticationToken,
-AdminController.recentlyAddedMembers
+  AuthMiddleware.validateAdminAuthenticationToken,
+  AdminController.recentlyAddedMembers
 );
 
 
 router.get('/get-recent-clock-in',
-AuthMiddleware.validateAdminAuthenticationToken,
-
-AdminController.recentlyClockInMembers
+  AuthMiddleware.validateAdminAuthenticationToken,
+  AdminController.recentlyClockInMembers
 );
 
 router.get('/get-clocks-time',
-AuthMiddleware.validateAdminAuthenticationToken,
-Model(Schema.fetchMembers, 'query'),
-AdminController.fetchAllMembersWithClockInAndClockOut
+  AuthMiddleware.validateAdminAuthenticationToken,
+  Model(Schema.fetchMembers, 'query'),
+  AdminController.fetchAllMembersWithClockInAndClockOut
 );
 
 router.post('/change-password',
-AuthMiddleware.validateAdminAuthenticationToken,
-Model(Schema.setNewPassword, 'payload'),
-AdminMiddleware.validateUnAuthenticatedAdmin('verify'),
-AdminController.changeAdminPassword
+  AuthMiddleware.validateAdminAuthenticationToken,
+  Model(Schema.setNewPassword, 'payload'),
+  AdminMiddleware.validateUnAuthenticatedAdmin('verify'),
+  AdminController.changeAdminPassword
 )
 
 export default router;

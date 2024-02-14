@@ -87,7 +87,38 @@ export const checkIfMemberEmailAlreadyExist = async(req, res, next) => {
   }
 };
 
+export const checkIfMemberEmailExistForBulkUpload = async(req, res, next) => {
+    const data = req.body.data;
+    let existingMembers = [];
+    try {
+        data.forEach(async (row, index) => {
+          const [ membersEmail ] = await processAnyData(authQueries.getMemberByEmail, [row.email]);
+          if(membersEmail) {
+            existingMembers.push(row);
+          }
 
+          if(index == data.length - 1) {
+
+            if(existingMembers.length == 0) {
+              return next();
+            }
+            else {
+              logger.info(`${enums.CURRENT_TIME_STAMP}, :::Info: 
+              we can not process your data checkIfMemberEmailExistForBulkUpload.admin.middlewares.admin.js`);
+              return Response.error(res, enums.MEMBER_EMAIL_EXIST_FOR_BULK_UPLOAD, enums.HTTP_CONFLICT, enums.CHECK_IF_MEMBER_EMAIL_ALREADY_EXIST_FOR_BULK_UPLOAD_MIDDLEWARE);
+            }
+          }
+         
+        });
+        
+        
+        } catch (error) {
+          error.label = enums.CHECK_IF_MEMBER_EMAIL_ALREADY_EXIST_MIDDLEWARE;
+          logger.error(`checking if member email for bulk upload failed::${enums.CHECK_IF_MEMBER_EMAIL_ALREADY_EXIST_FOR_BULK_UPLOAD_MIDDLEWARE}`, error.message);
+          // return next(error);
+          console.log(error)
+        }
+}
 
 export const checkIfMemberIdExist = async(req, res, next) => {
   try {

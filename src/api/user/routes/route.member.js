@@ -17,18 +17,18 @@ router.get(
 
 
 router.get('/fetch-one-member',
-Model(Schema.fetchOneMember, 'query'),
-MemberController.fetchOneMenber
+  Model(Schema.fetchOneMember, 'query'),
+  MemberController.fetchOneMenber
 );
 
 
 router.post('/clock-in/:id',
-AuthMiddleware.checkIfMemberIdExist,
-MemberController.clockInMember
+  AuthMiddleware.checkIfMemberIdExist,
+  MemberController.clockInMember
 );
 
 router.post('/clock-out/:id', 
-MemberController.clockOutMember
+  MemberController.clockOutMember
 );
 
 export default router;

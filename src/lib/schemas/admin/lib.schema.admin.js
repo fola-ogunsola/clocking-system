@@ -29,6 +29,7 @@ const addMember = Joi.object().keys({
     page: Joi.number().positive().optional(),
     per_page: Joi.number().positive().optional(),
     date: Joi.date().optional(),
+    to_date: Joi.date().optional()
   });
 
   const fetchOneMember = Joi.object().keys({

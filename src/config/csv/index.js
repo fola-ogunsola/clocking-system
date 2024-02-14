@@ -10,6 +10,7 @@ import Response from '../../lib/http/lib.http.responses';
 export const uploadCsvFile = async(req, res, next) => {
 
     const data = req.body.data;
+
     try {
         data.forEach(async row => {
             await processNoneData(authQueries.addMember, [row.first_name, row.last_name, row.email, row.phone_number, row.profile_image])
