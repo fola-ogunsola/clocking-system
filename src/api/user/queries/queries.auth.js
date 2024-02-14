@@ -102,7 +102,7 @@ export default {
     getTotalNumberOfClockOut: `
     SELECT count(clock_out) 
     FROM "clock-history"
-    WHERE clock_out = 'false'`,
+    WHERE clock_out = 'true'`,
     getTotalNumberOfMembers: `
     SELECT count(*)        
     FROM "members"`,
