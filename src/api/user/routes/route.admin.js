@@ -77,7 +77,7 @@ router.get('/get-clocks-time',
 router.post('/change-password',
   AuthMiddleware.validateAdminAuthenticationToken,
   Model(Schema.setNewPassword, 'payload'),
-  AdminMiddleware.validateUnAuthenticatedAdmin('verify'),
+  // AdminMiddleware.validateUnAuthenticatedAdmin('verify'),
   AdminController.changeAdminPassword
 )
 

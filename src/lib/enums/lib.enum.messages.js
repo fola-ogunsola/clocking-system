@@ -12,7 +12,7 @@ export const ADMIN_ALREADY_CREATED = (type) => `${type} already created`;
 export const FORGOT_PASSWORD_TOKEN = 'Forgot password reset token sent';
 export const PASSWORD_SET_SUCCESSFULLY = 'Password set successfully';
 export const NO_TOKEN = 'Please provide a token';
-export const INVALID_TOKEN = 'Invalid/Expired Token';
+export const INVALID_TOKEN = 'Invalid Token';
 export const SESSION_EXPIRED = 'Session expired';
 export const MEMBER_SUCCESSFULLY_ADDED = 'Member successfully added';
 export const MEMBER_EMAIL_EXIST = 'Member Email already exist';

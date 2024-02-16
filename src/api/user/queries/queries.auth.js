@@ -21,8 +21,7 @@ export default {
     WHERE email = $1`,
     setNewAdminPassword: `
     UPDATE admin 
-    SET password=$1, updated_at=now() 
-    WHERE email=$2 `,
+    SET password=$1, updated_at=now()`,
     addMember: `
     INSERT INTO members(
         first_name,
@@ -39,7 +38,8 @@ export default {
     deleteMember: `
     DELETE 
     FROM members
-    WHERE id = $1`,
+    WHERE id = $1
+    AND member_id = ()`,
     editMember: `
     UPDATE members
     SET first_name = $1, last_name = $2, phone_number = $3 WHERE id = $4`,

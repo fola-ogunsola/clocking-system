@@ -194,7 +194,7 @@ export const recentlyClockInMembers = async(req, res, next) => {
 
 export const changeAdminPassword = async(req, res, next) => {
     try {
-        const email = req.body.email;
+        // const email = req.body.email;
         const new_password = req.body.new_password;
         const old_password = req.body.old_password;
         const confirm_password = req.body.confirm_password;
@@ -203,8 +203,8 @@ export const changeAdminPassword = async(req, res, next) => {
             const comparepassword = await Hash.compareData(old_password, admin.password);
             if (comparepassword){
                 const hash = await Hash.hashData(new_password.trim());
-                logger.info(`${enums.CURRENT_TIME_STAMP}, ${admin.email}:::Info: New password hashed Successfully changeAdminPassword.admin.controllers.auth.js`);
-                const [setNewPassword] = await processAnyData(authQueries.setNewAdminPassword, [hash, email]);
+                logger.info(`${enums.CURRENT_TIME_STAMP}, :::Info: New password hashed Successfully changeAdminPassword.admin.controllers.auth.js`);
+                const [setNewPassword] = await processAnyData(authQueries.setNewAdminPassword, [hash]);
                 logger.info(`${enums.CURRENT_TIME_STAMP}, ${admin.email}:::Info: New password saved in the DB setPassword.admin.controllers.auth.js`);
                 return Response.success(res, enums.PASSWORD_SET_SUCCESSFULLY, enums.HTTP_OK, setNewPassword);
             }
