@@ -47,9 +47,17 @@ export const verifyAdminVerificationToken = async(req, res, next) => {
     logger.info(`${enums.CURRENT_TIME_STAMP}, Info: checked if correct OTP sent is correct verifyAdminVerificationToken.admin.middlewares.auth.js`);
     if(!otpAdmin){
       logger.info(`${enums.CURRENT_TIME_STAMP}, Info: OTP is invalid verifyAdminVerificationToken.admin.middlewares.auth.js`);
-      return Response.error(res, enums.INVALID_LOGIN_CREDENTIALS, enums.HTTP_BAD_REQUEST, enums.VERIFY_ADMIN_VERIFICATION_TOKEN_MIDDLEWARE);
+      return Response.error(res, enums.INVALID_OTP_CREDENTIALS, enums.HTTP_BAD_REQUEST, enums.VERIFY_ADMIN_VERIFICATION_TOKEN_MIDDLEWARE);
     }
     logger.info(`${enums.CURRENT_TIME_STAMP}, ${otpAdmin.email}:::Info: OTP is valid verifyAdminVerificationToken.admin.middlewares.auth.js`);
+    const isExpired = new Date().getTime() > new Date(otpAdmin.reset_password_token_expires).getTime();
+    if (isExpired) {
+      logger.info(`${enums.CURRENT_TIME_STAMP}, ${otpAdmin.id}:::Info: successfully confirms that verification token has expired 
+      verifyAdminVerificationToken.admin.middlewares.auth.js`);
+      return Response.error(res, enums.EXPIRED_VERIFICATION_TOKEN, enums.HTTP_FORBIDDEN, enums.VERIFY_ADMIN_VERIFICATION_TOKEN_MIDDLEWARE);
+    }
+    logger.info(`${enums.CURRENT_TIME_STAMP}, ${otpAdmin.id}:::Info: successfully confirms that verification token is still active 
+    verifyAdminVerificationToken.admin.middlewares.auth.js`);
     req.admin = otpAdmin;
     return next();
   } catch (error) {

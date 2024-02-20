@@ -54,7 +54,7 @@ export const commonTemplate = (messageType, data) => {
       <tr>
       <td>
         <p>Regards,</p>
-        <p>Baobab Team</p>
+        <p>The PiousClock Team</p>
       </td>
 </tr>
     </table>
@@ -64,7 +64,7 @@ export const commonTemplate = (messageType, data) => {
       <td  style="padding: 20px 0;">
         
         <div style="color: #84868c; font-weight: 300; padding: 20px 0;  border-top: 2px solid #d9ecd4">
-          <span>©${new Date(new Date()).getFullYear()} Baobab. All rights reserved.
+          <span>©${new Date(new Date()).getFullYear()} PiousClock. All rights reserved.
           </span>
         </div>
       </td>

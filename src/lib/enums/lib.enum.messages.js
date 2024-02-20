@@ -5,7 +5,8 @@ export const WELCOME = 'CLOCKING_SYSTEM APIs welcome you';
 export const DEAD_END_MESSAGE = 'Resource Not Found';
 export const SOMETHING_BROKE_MESSAGE = 'Oooops! Something broke, kindly try later';
 export const ADMIN_LOGIN_SUCCESSFULLY = 'Admin logged in successfully';
-export const INVALID_LOGIN_CREDENTIALS = 'Invalid login credentials';
+export const INVALID_OTP_CREDENTIALS = 'Invalid otp credentials';
+export const EXPIRED_VERIFICATION_TOKEN = 'Otp Expired'
 export const ACCOUNT_NOT_EXIST = (type) => `${type} account does not exist`;
 export const ADMIN_CREDENTIALS = (type) => `Admin ${type} has not been created`;
 export const ADMIN_ALREADY_CREATED = (type) => `${type} already created`;

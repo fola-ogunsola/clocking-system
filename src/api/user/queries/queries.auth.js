@@ -7,14 +7,15 @@ export default {
     WHERE email = $1`,
     forgotAdminPassword: `
     UPDATE admin 
-    SET reset_password_token = $1 
+    SET reset_password_token = $1 ,
+    reset_password_token_expires = $3
     WHERE trim(email)=$2
     RETURNING admin.id, admin.full_name, admin.email`,
     verifyPasswordToken: `
-    SELECT id, email 
+    SELECT id, email , full_name, reset_password_token_expires
     FROM admin 
     WHERE email=$1 
-    AND reset_password_token=$2 `,
+    AND reset_password_token=$2  `,
     getAdminByEmail: `
     SELECT id, email, full_name , password
     FROM admin
@@ -49,14 +50,17 @@ export default {
     WHERE id = $1`,
     getAllMembers: `
     SELECT 
-    id , profile_image, 
-    first_name , last_name ,
-    email, phone_number, created_at AS date_added
+        id , profile_image, 
+        first_name , last_name ,
+        email, phone_number, created_at AS date_added
     FROM members
-    WHERE TRIM(CONCAT(first_name, ' ', last_name)) ILIKE TRIM($1)
-    OR TRIM(CONCAT(last_name, ' ', first_name)) ILIKE TRIM($1)
-    OR (email ILIKE $1 OR $1 IS NULL)
-    AND (created_at::DATE = $2 OR $2 IS NULL)`,
+    WHERE 
+        TRIM(CONCAT(first_name, ' ', last_name)) ILIKE TRIM($1)
+        OR TRIM(CONCAT(last_name, ' ', first_name)) ILIKE TRIM($1)
+        OR (email ILIKE $1 OR $1 IS NULL)
+        AND ((created_at::DATE BETWEEN $2::DATE AND $3::DATE) OR ($2 IS NULL AND $3 IS NULL))
+        OFFSET $4
+        LIMIT $5`,
     getAllMembersCount: `
     SELECT
     COUNT(id) AS total_count
@@ -124,7 +128,7 @@ export default {
     ON "clock-history".member_id = members.id 
     WHERE "clock-history".clock_in = 'true'
     ORDER BY "clock-history".created_at DESC
-    LIMIT 5;`,
+    LIMIT 10;`,
     getAllMembersWithCheckInAndCheckOut:`
     SELECT
         members.id,

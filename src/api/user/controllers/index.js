@@ -76,17 +76,19 @@ export const forgotPassword = async(req, res, next) => {
         console.log(admin.email)
     try {
         const resetPasswordToken = await otpGenerationAdmin(req, res, next);
-        // const tokenExpirationLength = 5;
-        // const expireAt = dayjs().add(tokenExpirationLength, 'minutes');
-        // const expirationTime = dayjs(expireAt);
-        const payload = [resetPasswordToken, admin.email ]
+        const tokenExpirationLength = 5;
+        const expireAt = dayjs().add(tokenExpirationLength, 'minutes');
+        const expirationTime = dayjs(expireAt);
+        const payload = [resetPasswordToken, admin.email, expireAt]
         console.log(resetPasswordToken)
         await processAnyData(authQueries.forgotAdminPassword, payload)
         logger.info(`${enums.CURRENT_TIME_STAMP}, ${admin.id}:::Info: reset password token set in the DB forgotPassword.admin.controllers.auth.js`);
         const data = {
             email : admin.email,
             fullname : admin.full_name,
-            resetPasswordToken
+            resetPasswordToken,
+            otpExpire: expirationTime, 
+            otpDuration: `${tokenExpirationLength} minutes` 
         };
         console.log(admin)
         await MailService('Reset your password', 'adminForgotPassword', { ...data });
