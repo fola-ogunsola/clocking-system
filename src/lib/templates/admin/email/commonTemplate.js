@@ -34,7 +34,7 @@ export const commonTemplate = (messageType, data) => {
     <table role="header" width="100%">
       <tr>
         <td style="padding: 40px 40px 0px; width: 73%;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjjOxZX_leEdZWnXVrJjtx-b0Ymjp3L0-fPQ&usqp=CAU" 
+          <img src="https://photow-profile-images.s3.us-west-2.amazonaws.com/Logo+(2).png" 
           width="150px"
           alt="baobab-icon">
         </td>

@@ -40,7 +40,7 @@ export const adminResetPassword = (data) => `
 <tr>
   <td>
     <h2 style="font-family: 'Figtree';font-style: normal;font-weight: 500;font-size: 20px;line-height: 36px;color: #84868c;">
-    Hi ${data.full_name},
+    Hi ${data.fullname},
     </h2>
   </td>
 </tr>
