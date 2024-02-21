@@ -59,6 +59,7 @@ export default {
         OR TRIM(CONCAT(last_name, ' ', first_name)) ILIKE TRIM($1)
         OR (email ILIKE $1 OR $1 IS NULL)
         AND ((created_at::DATE BETWEEN $2::DATE AND $3::DATE) OR ($2 IS NULL AND $3 IS NULL))
+        ORDER BY created_at DESC
         OFFSET $4
         LIMIT $5`,
     getAllMembersCount: `
@@ -144,6 +145,7 @@ export default {
         OR 
         (members.email ILIKE $1 OR $1 IS NULL)
         AND (("clock-history".created_at::DATE BETWEEN $2::DATE AND $3::DATE) OR ($2 IS NULL AND $3 IS NULL))
+        ORDER BY created_at DESC
         OFFSET $4
         LIMIT $5`,
     getAllMembersWithCheckInAndCheckOutCount: `
