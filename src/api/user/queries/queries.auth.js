@@ -115,7 +115,7 @@ export default {
     SELECT first_name, last_name, email, profile_image, created_at 
     FROM "members" 
     ORDER BY created_at DESC
-    LIMIT 10;`,
+    LIMIT 5;`,
     recentlyClockInMembers: `
     SELECT 
     members.id,
@@ -145,7 +145,7 @@ export default {
         OR 
         (members.email ILIKE $1 OR $1 IS NULL)
         AND (("clock-history".created_at::DATE BETWEEN $2::DATE AND $3::DATE) OR ($2 IS NULL AND $3 IS NULL))
-        ORDER BY created_at DESC
+        ORDER BY "clock-history".created_at DESC
         OFFSET $4
         LIMIT $5`,
     getAllMembersWithCheckInAndCheckOutCount: `
@@ -161,4 +161,6 @@ export default {
         AND ("clock-history".created_at::DATE = $2 OR $2 IS NULL)`,
         
 }
+
+
 
